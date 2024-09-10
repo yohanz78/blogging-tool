@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Create Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+
+        <%- include('layouts-blog-info.ejs') %>
+
+        <a href="/author/home" class="absolute text-xl top-5 text-sky-400">
+            Back
+        </a>
+        
+        <!-- Article Body -->
+        <div class="text-xl py-14">
+            <form action="/author/home/create-article" method="post">
+                <div class="py-2">
+                    <label for="title" class="text-2xl">Title:</label>
+                    <input type="text" name="title" id="" class="p-2 border border-slate-500" placeholder="What's on your mind?">
+                </div>
+                <div class="py-2">
+                    <label for="subtitle" class="text-2xl">Subtitle:</label>
+                    <input type="text" name="subtitle" id="" class="p-2 border border-slate-500" placeholder="What's your sub-topic?">
+                </div>
+                <div class="py-2">
+                    <label for="content" class="block text-2xl">Content:</label>
+                    <textarea name="content" id="" cols="100" rows="5" class="p-2 border border-slate-500" placeholder="What do you want to explain"></textarea>
+                </div>
+                <button class="h-12 font-bold text-white rounded-lg bg-sky-400 w-28 hover:bg-sky-700">Create</button>
+            </form>
+        </div>  
+
+    </div>
+</body>
+</html>

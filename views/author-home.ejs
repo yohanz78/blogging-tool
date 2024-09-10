@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Author Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+
+        <%- include('layouts-blog-info.ejs') %>
+
+        <a href="/author/home/settings" class="absolute text-xl top-5 right-24 text-sky-400">
+            Settings
+        </a>
+        
+        <!-- Draft Articles Section -->
+        <div>
+            <a href="/author/home/create-article" class="flex items-center justify-center w-48 h-12 font-bold text-white rounded-lg bg-sky-400 hover:bg-sky-700">Create New Draft</a>
+            <div class="flex flex-col space-y-8 py-14">
+                <h1 class="text-3xl font-light">Draft Articles</h1>
+                <table class="text-lg" id="draftArticle">
+                    <tr>
+                        <th>Title</th>
+                        <th>Subtitle</th>
+                        <th>Created</th>
+                        <th>Last Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                    <% draftArticles.forEach(article => { %>
+                        <tr>
+                            <td><%= article.title %></td>
+                            <td><%= article.subtitle %></td>
+                            <td><%= formatDate(article.created_at) %></td>
+                            <td>
+                                <% if (article.updated_at) { %>
+                                    <%= formatDate(article.updated_at) %>
+                                    <% } else { %>
+                                    -
+                                <% } %>
+                            </td>
+                            <td class="flex justify-center gap-2">
+                                <!-- Edit article by ID -->
+                                <a href="/author/home/edit-article/<%= article.id %>" role="button" class="flex items-center justify-center h-10 font-bold text-white rounded-lg bg-sky-400 w-28 hover:bg-sky-700">Edit</a>
+                                <!-- Publish article by ID -->
+                                <form action="/author/home/publish/<%= article.id %>" method="post">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" class="flex items-center justify-center h-10 font-bold text-white bg-green-400 rounded-lg w-28 hover:bg-green-700">Publish</button>
+                                </form>
+                                <!-- Delete article by ID -->
+                                <form action="/author/home/delete-article/<%= article.id %>" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="flex items-center justify-center h-10 font-bold text-white bg-red-500 rounded-lg w-28 hover:bg-red-700">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Published Articles Section -->
+        <div>
+            <div class="flex flex-col space-y-8 py-14">
+                <h1 class="text-3xl font-light">Published Articles</h1>
+                <table class="p-0 text-lg" id="publishedArticle">
+                    <tr>
+                        <th>Title</th>
+                        <th>Subtitle</th>
+                        <th>Created</th>
+                        <th>Last Modified</th>
+                        <th>Actions</th>
+                    </tr>
+                    <% publishedArticles.forEach((article) => { %>
+                    <tr>
+                        <td><%= article.title %></td>
+                        <td><%= article.subtitle %></td>
+                        <td><%= formatDate(article.created_at) %></td>
+                        <td>
+                            <% if (article.updated_at) { %>
+                                <%= formatDate(article.updated_at) %>
+                                <% } else { %>
+                                -
+                            <% } %>
+                        </td>
+                        <td class="flex justify-center gap-2">
+                            <a href="#" role="button" class="flex items-center justify-center h-10 font-bold text-white rounded-lg bg-sky-400 w-28 hover:bg-sky-700">Share</a>
+                            <!-- Delete article by ID -->
+                            <form action="/author/home/delete-article/<%= article.id %>" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="flex items-center justify-center h-10 font-bold text-white bg-red-500 rounded-lg w-28 hover:bg-red-700">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

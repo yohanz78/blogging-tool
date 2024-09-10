@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Article</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+        
+        <%- include('layouts-blog-info.ejs') %>
+
+        <a href="/reader" class="absolute text-xl top-5 text-sky-400">
+            Back
+        </a>
+
+        <!-- Article Section -->
+        <div class="my-12">
+            <!-- Title, Subtitle, Likes, and Views -->
+            <div>
+                <h3 class="text-5xl font-semibold"><%= article.title %></h3>
+                <p class="text-2xl font-light"><%= article.subtitle %></p>
+                <p class="mt-5 text-xl"><%= formatDate(article.updated_at) %></p>
+            </div>
+            <div class="flex items-center justify-end space-x-7">
+                <!-- Views Count -->
+                <span><span id="views-count"><%= article.views %></span> Views</span>
+                <!-- Likes Count -->
+                <button id="like-button" data-article-id="<%= article.id %>" class="px-8 py-2 border rounded-lg border-slate-600 hover:bg-red-300">Like (<span><%= article.likes %></span>)</button>
+            </div>
+
+            <!-- Article Content -->
+            <div class="my-5">
+                <p class="text-xl"><%= article.content %></p>
+            </div>
+        </div>
+
+        <!-- Comment Section -->
+        <div>
+            <h3 class="text-3xl font-light">Place Your Comment Here</h3>
+        
+            <div class="my-3 w-min">
+                <div class="bg-gray-300 p-7">
+                    <form action="/reader/article/<%= article.id %>/comment" method="post">
+                        <label class="block font-semibold">What's your think about this article?</label>
+                        <input type="text" name="name" class="w-full p-2 mb-3 border border-slate-500" placeholder="Your name">
+                        <textarea name="comment" id="" cols="50" rows="5" class="p-2 border border-slate-500" placeholder="Put your comment here"></textarea>
+                        <button type="submit" class="w-40 h-12 font-bold text-white rounded-lg bg-slate-500 hover:bg-slate-700">Add Comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Show Comment -->
+        <div class="flex flex-wrap mt-12 mb-24 gap-x-14" id="comments">
+            <% if (comments.length > 0) { %>
+                <% comments.forEach(function(comment) { %>
+                <div class="p-8 my-5 bg-gray-200 w-96">
+                    <p class="text-xl"><%= comment.comment %></p>
+                    <p class="font-light"><%= comment.name %></p>
+                    <p class="mt-5 text-right"><b></b><%= formatDate(comment.created_at) %></p>
+                </div>
+            <% }); %>
+            <% } else { %>
+                <p>No comments yet..</p>
+            <% } %>
+        </div>
+
+    </div>
+
+    <script>
+        // Handle article likes count
+        const likeButton = document.getElementById('like-button');
+        likeButton.addEventListener('click', () => {
+            const articleId = likeButton.dataset.articleId;
+            fetch(`/reader/article/${articleId}/like`, { method: 'POST' })
+            .then(() => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        });
+
+        // // Get the like button elements
+        // const likeButton = document.getElementById('like-button');
+        // const likesCountElement = document.getElementById('likes-count');
+
+        // // Add an event listener to the like button
+        // likeButton.addEventListener('click', (event) => {
+        //     // Prevent the default behavior of the button click event
+        //     event.preventDefault();
+
+        //     // Get the current likes count
+        //     let likesCount = parseInt(likesCountElement.textContent);
+
+        //     // Increment the likes count
+        //     likesCount++;
+        //     likesCountElement.textContent = likesCount.toString();
+        // });
+    </script>
+</body>
+</html>

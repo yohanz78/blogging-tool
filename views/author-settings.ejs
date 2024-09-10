@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Author Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+
+        <%- include('layouts-blog-info.ejs') %>
+
+        <a href="/author/home" class="absolute text-xl top-5 text-sky-400">
+            Back
+        </a>
+
+        <!-- Change Author Info -->
+        <div class="flex justify-center my-12 text-xl">
+            <div class="p-6 border rounded-md bg-sky-200">
+                <form action="/author/home/settings" method="post" class="flex flex-col space-y-2 ">
+                    <label for="blog-title">Blog Title:</label>
+                    <input type="text" name="blog_title" id="" class="p-2 border border-slate-500" required value="<%= author.blog_title %>" placeholder="Input blog title...">
+                    <label for="blog-subtitle">Blog Subtitle:</label>
+                    <input type="text" name="blog_subtitle" id="" class="p-2 border border-slate-500" required value="<%= author.blog_subtitle %>" placeholder="Input blog subtitle...">
+                    <label for="author-name">Author name:</label>
+                    <input type="text" name="name" id="" class="p-2 border border-slate-500" required value="<%= author.name %>" placeholder="Change yout name...">
+                    <div class="flex justify-end pt-5">
+                        <button class="h-12 font-bold text-white rounded-lg bg-sky-400 w-28 hover:bg-sky-700">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Author Log out -->
+        <div class="flex justify-center my-12">
+            <form action="/author/logout" method="post">
+                <button class="text-2xl text-red-700">Log out</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

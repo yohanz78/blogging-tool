@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+        
+        <%- include('layouts-blog-info.ejs') %>
+
+        <!-- Choose as author or reader -->
+        <div class="flex justify-center my-24 space-x-14">
+            <a href="/author/signup" role="button" class="hover:drop-shadow-xl">
+                <div class="px-24 border py-14 bg-sky-300 rounded-xl">
+                    <p class="text-5xl font-light">Author</p>
+                </div>
+            </a>
+            
+            <a href="/reader" role="button" class="hover:drop-shadow-xl">
+                <div class="px-24 py-14 bg-sky-300 rounded-xl">
+                    <p class="text-5xl font-light">Reader</p>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+</body>
+</html>

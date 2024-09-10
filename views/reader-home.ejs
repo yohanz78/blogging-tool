@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Tool | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-24 m-0">
+
+        <%- include('layouts-blog-info.ejs') %>
+        
+        <a href="/" class="absolute text-xl top-5 text-sky-400">
+            Back
+        </a>
+        
+        <!-- List of Articles Section -->
+        <div>
+            <h1 class="text-3xl font-light">Articles</h1>
+                
+            <!-- Foreach Article -->
+            <div class="flex flex-wrap gap-x-14">
+                <% articles.forEach(article => { %>
+                    <a href="/reader/article/<%= article.id %>" id="article">
+                        <div class="p-8 my-5 w-96 bg-sky-200">
+                            <h3 class="text-3xl font-semibold"><%= article.title %></h3>
+                            <p class="text-xl font-light"><%= article.subtitle %></p>
+                            <p class="mt-5 text-xl text-right"><%= formatDate(article.published_at) %></p>
+                        </div>
+                        <!-- Hidden form to update views count -->
+                        <form action="/reader/article/<%= article.id %>" method="post" style="display: none;" class="update-views-form">
+                        </form>
+                    </a>
+                <% }) %>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Handle article views count
+        const articleLinks = document.querySelectorAll('a[id="article"]');
+
+        articleLinks.forEach(function(articleLink) {
+            articleLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                const form = articleLink.parentNode.querySelector('.update-views-form'); // Get the hidden form
+                if (form) {
+                    form.action = `/reader/article/${articleLink.href.split('/').pop()}`; // Set the form action dynamically
+                    form.submit(); // Submit the form to update views count
+                }
+            });
+        });
+    </script>
+</body>
+</html>

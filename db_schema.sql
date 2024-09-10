@@ -1,0 +1,38 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE authors(
+id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL UNIQUE,
+password VARCHAR(100) NOT NULL,
+blog_title VARCHAR(255),
+blog_subtitle VARCHAR(255),
+latest_edit DATETIME
+);
+CREATE TABLE articles(
+id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+title VARCHAR(255) NOT NULL,
+subtitle VARCHAR(255),
+content TEXT,
+published BOOLEAN,
+views INTEGER DEFAULT 0,
+likes INTEGER DEFAULT 0,
+created_at DATETIME NOT NULL,
+updated_at DATETIME,
+published_at DATETIME,
+author_id INTEGER NOT NULL,
+FOREIGN KEY (author_id) REFERENCES authors (id)
+);
+CREATE TABLE comments(
+id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+name VARCHAR(50) NOT NULL,
+comment TEXT NOT NULL,
+created_at DATETIME NOT NULL,
+article_id INTEGER NOT NULL,
+FOREIGN KEY (article_id) REFERENCES articles (id) ON DELETE CASCADE
+);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('authors',1);
+INSERT INTO sqlite_sequence VALUES('articles',2);
+INSERT INTO sqlite_sequence VALUES('comments',1);
+COMMIT;
