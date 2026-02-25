@@ -7,7 +7,7 @@
 [![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/License-ISC-blue?style=for-the-badge)](LICENSE)
 
-*A full-featured blogging platform that empowers authors to create and manage content while providing readers with an engaging, interactive experience.*
+_A full-featured blogging platform that empowers authors to create and manage content while providing readers with an engaging, interactive experience._
 
 [Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Documentation](#-documentation) • [Contributing](#-contributing)
 
@@ -35,6 +35,7 @@
 The Modern Blogging Platform is a comprehensive content management system built with Node.js and Express. It features a clean, responsive interface powered by Tailwind CSS and provides a complete solution for both content creators and readers.
 
 **Key Highlights:**
+
 - 🔐 Secure authentication and session management
 - 📝 Full CRUD operations for article management
 - 💬 Interactive commenting system
@@ -53,24 +54,24 @@ The Modern Blogging Platform is a comprehensive content management system built 
 ### 👨‍💻 For Authors
 
 - ✅ **Secure Authentication**
-  - User registration and login
-  - Session-based authorization
-  - Protected routes middleware
+    - User registration and login
+    - Session-based authorization
+    - Protected routes middleware
 
 - ✍️ **Article Management**
-  - Create, edit, and delete articles
-  - Draft and publish workflow
-  - Article preview functionality
+    - Create, edit, and delete articles
+    - Draft and publish workflow
+    - Article preview functionality
 
 - 🎯 **Dashboard & Analytics**
-  - Comprehensive article overview
-  - View statistics and engagement metrics
-  - Latest activity tracking
+    - Comprehensive article overview
+    - View statistics and engagement metrics
+    - Latest activity tracking
 
 - ⚙️ **Customization**
-  - Personalized blog title and subtitle
-  - Author profile settings
-  - Blog information management
+    - Personalized blog title and subtitle
+    - Author profile settings
+    - Blog information management
 
 </td>
 <td width="50%" valign="top">
@@ -78,25 +79,25 @@ The Modern Blogging Platform is a comprehensive content management system built 
 ### 👥 For Readers
 
 - 📖 **Content Discovery**
-  - Browse all published articles
-  - Clean, organized article listing
-  - Fast and responsive interface
+    - Browse all published articles
+    - Clean, organized article listing
+    - Fast and responsive interface
 
 - 💬 **Engagement Features**
-  - Interactive commenting system
-  - Article likes and reactions
-  - Reader name attribution
+    - Interactive commenting system
+    - Article likes and reactions
+    - Reader name attribution
 
 - 📊 **Rich Reading Experience**
-  - Full article view with metadata
-  - Publication date and author info
-  - View count tracking
-  - Responsive typography
+    - Full article view with metadata
+    - Publication date and author info
+    - View count tracking
+    - Responsive typography
 
 - 🎨 **Modern UI/UX**
-  - Tailwind CSS styling
-  - Mobile-responsive design
-  - Intuitive navigation
+    - Tailwind CSS styling
+    - Mobile-responsive design
+    - Intuitive navigation
 
 </td>
 </tr>
@@ -179,11 +180,13 @@ npm install
 #### 2️⃣ Initialize Database
 
 **macOS / Linux:**
+
 ```bash
 npm run build-db
 ```
 
 **Windows:**
+
 ```bash
 npm run build-db-win
 ```
@@ -191,11 +194,13 @@ npm run build-db-win
 #### 3️⃣ Launch Application
 
 **Production Mode:**
+
 ```bash
 npm start
 ```
 
 **Development Mode** (with hot-reload):
+
 ```bash
 npm run dev
 ```
@@ -447,11 +452,13 @@ npm start             # Launch application
 **Location:** `index.js`
 
 ```javascript
-app.use(session({
-    secret: 'your-secret-key',  // ⚠️ Change this to a secure random string!
-    resave: false,
-    saveUninitialized: true,
-}));
+app.use(
+    session({
+        secret: "your-secret-key", // ⚠️ Change this to a secure random string!
+        resave: false,
+        saveUninitialized: true,
+    }),
+);
 ```
 
 **Recommended:** Use a strong, randomly generated secret:
@@ -460,7 +467,7 @@ app.use(session({
 // Generate a secure secret:
 // node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
-secret: process.env.SESSION_SECRET || 'fallback-secret-for-development'
+secret: process.env.SESSION_SECRET || "fallback-secret-for-development";
 ```
 
 #### Port Configuration
@@ -473,6 +480,7 @@ const port = process.env.PORT || 3000;
 ```
 
 **Change port:**
+
 ```bash
 # Using environment variable
 PORT=8080 npm start
@@ -488,35 +496,35 @@ const port = 8080;
 ### For Authors
 
 1. **Register an Account**
-   - Navigate to `/author/signup`
-   - Fill in your name, email, and password
-   - Click "Sign Up"
+    - Navigate to `/author/signup`
+    - Fill in your name, email, and password
+    - Click "Sign Up"
 
 2. **Customize Your Blog**
-   - Go to Settings after logging in
-   - Set your blog title and subtitle
-   - Save changes
+    - Go to Settings after logging in
+    - Set your blog title and subtitle
+    - Save changes
 
 3. **Create Your First Article**
-   - Click "Create New Article" from your dashboard
-   - Write your content using the editor
-   - Save as draft or publish immediately
+    - Click "Create New Article" from your dashboard
+    - Write your content using the editor
+    - Save as draft or publish immediately
 
 4. **Manage Content**
-   - View all articles in your dashboard
-   - Edit, publish, or delete articles
-   - Track views and engagement
+    - View all articles in your dashboard
+    - Edit, publish, or delete articles
+    - Track views and engagement
 
 ### For Readers
 
 1. **Browse Articles**
-   - Visit the homepage or `/reader`
-   - Browse published articles
+    - Visit the homepage or `/reader`
+    - Browse published articles
 
 2. **Read & Engage**
-   - Click on any article to read
-   - Leave comments
-   - Like articles you enjoy
+    - Click on any article to read
+    - Leave comments
+    - Like articles you enjoy
 
 ---
 
@@ -545,6 +553,7 @@ const port = 8080;
 ### Development Guidelines
 
 #### Database Management
+
 ```bash
 # Always modify schema through db_schema.sql
 # Then rebuild the database:
@@ -552,6 +561,7 @@ npm run clean-db && npm run build-db
 ```
 
 **Best Practices:**
+
 - ✅ Modify `db_schema.sql` for schema changes
 - ✅ Use npm scripts to rebuild database
 - ❌ Don't manually alter database structure
@@ -572,6 +582,7 @@ module.exports = function isLoggedIn(req, res, next) {
 ```
 
 **Protected Routes:**
+
 - All `/author/*` routes (except signup/login) require authentication
 - Session data stored in `req.session.author`
 - Automatic redirect to login if not authenticated
@@ -580,13 +591,13 @@ module.exports = function isLoggedIn(req, res, next) {
 
 ```javascript
 // Standard route pattern
-router.get('/endpoint', isLoggedIn, (req, res, next) => {
-    const query = 'SELECT * FROM table WHERE condition = ?';
+router.get("/endpoint", isLoggedIn, (req, res, next) => {
+    const query = "SELECT * FROM table WHERE condition = ?";
     const parameters = [value];
-    
+
     global.db.get(query, parameters, (err, row) => {
         if (err) return next(err);
-        res.render('template', { data: row });
+        res.render("template", { data: row });
     });
 });
 ```
@@ -607,11 +618,13 @@ router.get('/endpoint', isLoggedIn, (req, res, next) => {
 Start fresh with a clean database:
 
 **macOS / Linux:**
+
 ```bash
 npm run clean-db && npm run build-db
 ```
 
 **Windows:**
+
 ```bash
 npm run clean-db-win && npm run build-db-win
 ```
@@ -638,18 +651,20 @@ cp database.backup.db database.db
 **Error:** `EADDRINUSE: address already in use :::3000`
 
 **Solutions:**
+
 1. Change the port in `index.js`:
-   ```javascript
-   const port = 8080; // Use different port
-   ```
+    ```javascript
+    const port = 8080; // Use different port
+    ```
 2. Or kill the process using port 3000:
-   ```bash
-   # Find process ID
-   lsof -i :3000
-   
-   # Kill process
-   kill -9 <PID>
-   ```
+
+    ```bash
+    # Find process ID
+    lsof -i :3000
+
+    # Kill process
+    kill -9 <PID>
+    ```
 
 </details>
 
@@ -659,14 +674,15 @@ cp database.backup.db database.db
 **Error:** `Error: SQLITE_CANTOPEN: unable to open database file`
 
 **Solutions:**
+
 1. Ensure SQLite3 is installed:
-   ```bash
-   sqlite3 --version
-   ```
+    ```bash
+    sqlite3 --version
+    ```
 2. Rebuild the database:
-   ```bash
-   npm run build-db
-   ```
+    ```bash
+    npm run build-db
+    ```
 3. Check file permissions on `database.db`
 
 </details>
@@ -677,6 +693,7 @@ cp database.backup.db database.db
 **Symptoms:** Unable to stay logged in, random logouts
 
 **Solutions:**
+
 1. Clear browser cookies and cache
 2. Change session secret in `index.js`
 3. Restart the server
@@ -690,6 +707,7 @@ cp database.backup.db database.db
 **Error:** `Cannot find module 'express'` (or other modules)
 
 **Solution:**
+
 ```bash
 # Remove node_modules and reinstall
 rm -rf node_modules package-lock.json
@@ -702,11 +720,12 @@ npm install
 <summary><b>CSS Styles Not Loading</b></summary>
 
 **Solution:**
+
 1. Ensure `public/main.css` exists
 2. Check static file middleware in `index.js`:
-   ```javascript
-   app.use(express.static(__dirname + '/public'));
-   ```
+    ```javascript
+    app.use(express.static(__dirname + "/public"));
+    ```
 3. Clear browser cache (Ctrl+F5 / Cmd+Shift+R)
 
 </details>
